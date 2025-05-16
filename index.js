@@ -14,7 +14,10 @@ import connectToDatabase from './db/db.js'
 
 connectToDatabase()
 const app=express()
-app.use(cors())
+app.use(cors({
+    origin : "https://employeetrack-frontend-ten.vercel.app",
+    credentials: true
+}))
 app.use(express.json())
 app.use('/api/auth', authRouter)
 app.use(express.static('public/uploads'))
