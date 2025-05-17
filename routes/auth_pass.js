@@ -20,8 +20,8 @@ router.post("/forgot-password", async (req, res) => {
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "kavyathota03@gmail.com",       // Replace with your actual email
-        pass: "lywx ptxn wntw hxlf", // Replace with real app password
+        user: process.env.EMAIL_USER,       // Replace with your actual email
+        pass: process.env.EMAIL_PASS, // Replace with real app password
       },
     });
 
@@ -29,7 +29,7 @@ router.post("/forgot-password", async (req, res) => {
       from: "your email@gmail.com",
       to: email,
       subject: "Reset Password",
-      text: `http://localhost:5173/resetPassword/${encodedToken}`,
+      text : `https://employeetrack-frontend-ten.vercel.app/resetPassword/${encodedToken}`
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
