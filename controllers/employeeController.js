@@ -34,6 +34,14 @@ const addEmployee = async(req,res) => {
    }
    = req.body;
 
+   if (req.file) {
+            console.log("Uploaded file info:", req.file);
+            console.log("Image path to save:", `uploads/${req.file.filename}`);
+        } else {
+            console.log("No image file uploaded");
+    }
+
+
    const user = await User.findOne({email})
    if(user) {
     return res.status(400) .json({success: false, error: "user already registered in emp"});
