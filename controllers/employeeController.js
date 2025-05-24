@@ -1,8 +1,11 @@
 import Employee from "../models/Employee.js"
 import User from "../models/User.js"
 import bcrypt from "bcrypt"
-import path from "path";
+import multer from "multer"
 import Department from '../models/Department.js'
+
+
+const upload = multer()
 
 const addEmployee = async(req,res) => {
     try{
@@ -33,7 +36,7 @@ const addEmployee = async(req,res) => {
     name,
     email,
     password: hashPassword,
-    role,
+    role
    })
    const savedUser= await newUser.save()
 
@@ -128,4 +131,4 @@ const fetchEmployeesByDepId = async(req,res) => {
         }
 }
 
-export {addEmployee, getEmployees, getEmployee, updateEmployee, fetchEmployeesByDepId}
+export {addEmployee, upload, getEmployees, getEmployee, updateEmployee, fetchEmployeesByDepId}
